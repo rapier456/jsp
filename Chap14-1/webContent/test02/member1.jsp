@@ -3,17 +3,17 @@
     isELIgnored="false"  %>
 <%
    request.setCharacterEncoding("UTF-8");
-	// 표현식으로 출력하기 위해 회원 정보 가져옴.
-   String id=request.getParameter("id");
-   String pwd=request.getParameter("pwd");
-   String name= request.getParameter("name");
-   String email= request.getParameter("email");  
+	// 바인딩된 속성 값을 getAttribute() 메서드를 이용해 가져옴
+   String id=(String)request.getAttribute("id");
+   String pwd=(String)request.getAttribute("pwd");
+   String name= (String)session.getAttribute("name");
+   String email= (String)application.getAttribute("email");  
 %>   
 <html>
 	<head>
 		<meta charset=”UTF-8">
 		<title>회원 정보 출력창</title>
-	</head> 
+	</head>
 	<body>
 		<table border="1"  align="center" >
 		    <tr align="center" bgcolor="#99ccff">
@@ -23,16 +23,18 @@
 		      <td width="20%"><b>이메일</b></td>
 		   </tr>
 		   <tr align=center>
+		   <!-- 표현식으로 회원 정보 출력 -->
 		      <td><%=id %> </td>
 		      <td><%=pwd%> </td>
 		      <td><%=name %> </td>
 		      <td><%=email %> </td>
 		   </tr>   
 		   <tr align=center>
-		      <td>${param.id}</td>
-		      <td>${param.pwd}</td>
-		      <td>${param.name}</td>
-		      <td>${param.email}</td>
+		   <!-- 바인딩 된 속성 이름으로 회원 정보 출력 -->
+		      <td>${id}</td>
+		      <td>${pwd}</td>
+		      <td>${name}</td>
+		      <td>${email}</td>
 		   </tr>
 		</table>
 	</body>
